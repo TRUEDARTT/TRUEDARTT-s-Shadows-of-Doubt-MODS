@@ -3,17 +3,18 @@ using HarmonyLib;
 using SOD.Common;
 using SOD.Common.BepInEx;
 using UnityEngine;
+using System.Reflection;
 
 namespace ExtraCityEdit;
 
 [BepInPlugin("truedartt.extracityedit", "ExtraCityEdit", "0.0.1")]
-[BepInDependency("Venomaus.SOD.Common")]
+[BepInDependency(SOD.Common.Plugin.PLUGIN_GUID)]
 public class ExtraCityEdit : PluginController<ExtraCityEdit>
 {
     public override void Load()
     {
-        var harmony = new Harmony($"truedartt.extracityedit");
-        harmony.PatchAll();
+        Harmony.PatchAll(Assembly.GetExecutingAssembly());
+        ExtraCityEdit.Log.LogInfo("Plugin is patched.");
     }
 
     [HarmonyPatch(typeof(MainMenuController), nameof(MainMenuController.Start))]
@@ -27,21 +28,21 @@ public class ExtraCityEdit : PluginController<ExtraCityEdit>
             var menuCanvas = GameObject.Find("MenuCanvas");
             if (menuCanvas == null)
             {
-                Plugin.Log.LogError("MenuCanvas not found.");
+                ExtraCityEdit.Log.LogError("MenuCanvas not found.");
                 return;
             }
 
             var generateComponents = menuCanvas.transform.Find("MainMenu/GenerateCityPanel/GenerateNewCityComponents");
             if (generateComponents == null)
             {
-                Plugin.Log.LogError("GenerateNewCityComponents container not found.");
+                ExtraCityEdit.Log.LogError("GenerateNewCityComponents container not found.");
                 return;
             }
 
             var template = generateComponents.Find("CityEditorToggle")?.gameObject;
             if (template == null)
             {
-                Plugin.Log.LogError("CityEditorToggle template not found.");
+                ExtraCityEdit.Log.LogError("CityEditorToggle template not found.");
                 return;
             }
 
@@ -53,7 +54,7 @@ public class ExtraCityEdit : PluginController<ExtraCityEdit>
             var label = newToggle.transform.Find("LabelText");
             if (label == null)
             {
-                Plugin.Log.LogError("LabelText missing on newToggle.");
+                ExtraCityEdit.Log.LogError("LabelText missing on newToggle.");
                 return;
             }
 
@@ -69,33 +70,28 @@ public class ExtraCityEdit : PluginController<ExtraCityEdit>
             }
             else
             {
-                Plugin.Log.LogError("textComponent missing on newToggle.");
+                ExtraCityEdit.Log.LogError("textComponent missing on newToggle.");
             }
 
             // Store toggle controller
             _toggleController = newToggle.GetComponent<ToggleController>();
-            if (_toggleController == null)
+            if (_toggleController != null)
             {
                 _toggleController.playerPrefsID = "";
             }
             else
             {
-                Plugin.Log.LogError("ToggleController missing on newToggle.");
+                ExtraCityEdit.Log.LogError("ToggleController missing on newToggle.");
             }
         }
     }
-
 
     [HarmonyPatch(typeof(NewBuilding), nameof(NewBuilding.SetupModel))]
     public class BetaCore
     {
         public static void Prefix(NewBuilding __instance)
         {
-
-            if (__instance.preset.enableAlleywayWalls == true && AlphaCore.enableAlleywayWalls == false)
-            {
-                __instance.preset.enableAlleywayWalls = false;
-            }
+            __instance.preset.enableAlleywayWalls = AlphaCore.enableAlleywayWalls;
         }
     }
 }
