@@ -1,0 +1,365 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HarmonyX" Version="2.14.0" />
+    <PackageReference Include="SOD.Common" Version="2.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\core\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="AeLa.EasyFeedback">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\AeLa.EasyFeedback.dll</HintPath>
+    </Reference>
+    <Reference Include="AeLa.EasyFeedback.Demo">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\AeLa.EasyFeedback.Demo.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\Assembly-CSharp-firstpass.dll</HintPath>
+    </Reference>
+    <Reference Include="AssetBundleLoader">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\plugins\Piepieonline-Asset_Bundle_Loader\AssetBundleLoader.dll</HintPath>
+    </Reference>
+    <Reference Include="BepInEx.Core">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\core\BepInEx.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="BepInEx.Unity.IL2CPP">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\core\BepInEx.Unity.IL2CPP.dll</HintPath>
+    </Reference>
+    <Reference Include="com.rlabrecque.steamworks.net">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\com.rlabrecque.steamworks.net.dll</HintPath>
+    </Reference>
+    <Reference Include="FMODUnity">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\FMODUnity.dll</HintPath>
+    </Reference>
+    <Reference Include="FMODUnityResonance">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\FMODUnityResonance.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppMono.Security">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\Il2CppMono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2Cppmscorlib">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\Il2Cppmscorlib.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\Il2CppSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Configuration">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\Il2CppSystem.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Core">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\Il2CppSystem.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Data">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\Il2CppSystem.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Net.Http">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\Il2CppSystem.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Numerics">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\Il2CppSystem.Numerics.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Runtime.Serialization">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\Il2CppSystem.Runtime.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Xml">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\Il2CppSystem.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Xml.Linq">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\Il2CppSystem.Xml.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="modio.UI">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\modio.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="modio.UnityPlugin">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\modio.UnityPlugin.dll</HintPath>
+    </Reference>
+    <Reference Include="NaughtyAttributes.Core">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\NaughtyAttributes.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="NaughtyAttributes.Test">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\NaughtyAttributes.Test.dll</HintPath>
+    </Reference>
+    <Reference Include="NewAssembly">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\NewAssembly.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Rewired_Core">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\Rewired_Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Rewired_Windows">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\Rewired_Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Rewired_Windows_Functions">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\Rewired_Windows_Functions.dll</HintPath>
+    </Reference>
+    <Reference Include="UniTask">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UniTask.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Addressables">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\Unity.Addressables.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\Unity.Burst.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Unsafe">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\Unity.Burst.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Collections">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\Unity.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\Unity.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Runtime">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.HighDefinition.Config.Runtime">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\Unity.RenderPipelines.HighDefinition.Config.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.HighDefinition.Runtime">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\Unity.RenderPipelines.HighDefinition.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ResourceManager">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\Unity.ResourceManager.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Timeline">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\Unity.Timeline.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.VisualEffectGraph.Runtime">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\Unity.VisualEffectGraph.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.Core">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\Unity.VisualScripting.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\unity-libs\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AccessibilityModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.AccessibilityModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AIModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.AIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AndroidJNIModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.AndroidJNIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.AnimationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.AssetBundleModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClothModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.ClothModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterInputModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.ClusterInputModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterRendererModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.ClusterRendererModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CrashReportingModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.CrashReportingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.DirectorModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.DirectorModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.DSPGraphModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.DSPGraphModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.GameCenterModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.GameCenterModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.GIModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.GIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.GridModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.GridModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.HotReloadModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.HotReloadModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.ImageConversionModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.InputModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.JSONSerializeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.LocalizationModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.LocalizationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.NVIDIAModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.NVIDIAModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.ParticleSystemModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PerformanceReportingModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.PerformanceReportingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Physics2DModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.Physics2DModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ProfilerModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.ProfilerModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ScreenCaptureModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.ScreenCaptureModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SharedInternalsModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.SharedInternalsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteMaskModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.SpriteMaskModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteShapeModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.SpriteShapeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.StreamingModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.StreamingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SubstanceModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.SubstanceModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SubsystemsModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.SubsystemsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.TerrainModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainPhysicsModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextCoreFontEngineModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.TextCoreFontEngineModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextCoreTextEngineModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.TextCoreTextEngineModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.TextRenderingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TilemapModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.TilemapModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TLSModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.TLSModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIElementsModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.UIElementsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIElementsNativeModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.UIElementsNativeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.UIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UmbraModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.UmbraModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UNETModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.UNETModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityAnalyticsCommonModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityAnalyticsModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityConnectModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.UnityConnectModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityCurlModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.UnityCurlModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityTestProtocolModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.UnityWebRequestModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VehiclesModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.VehiclesModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VFXModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.VFXModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VideoModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.VideoModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VirtualTexturingModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.VirtualTexturingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VRModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.VRModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.WindModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.WindModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.XRModule">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\UnityEngine.XRModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UniverseLib.IL2CPP.Interop">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\plugins\Piepieonline-Asset_Bundle_Loader\UniverseLib.IL2CPP.Interop.dll</HintPath>
+    </Reference>
+    <Reference Include="Whinarn.UnityMeshSimplifier.Runtime">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\Whinarn.UnityMeshSimplifier.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="__Generated">
+      <HintPath>..\..\..\Desktop\md\_import_cache\ShadowsofDoubt\profiles\x\BepInEx\interop\__Generated.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

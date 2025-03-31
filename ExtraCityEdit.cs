@@ -1,4 +1,4 @@
-using BepInEx;
+﻿using BepInEx;
 using HarmonyLib;
 using SOD.Common.BepInEx;
 using UnityEngine;
@@ -22,7 +22,7 @@ public interface Configs
 
 
 
-[BepInPlugin("truedartt.extracityedit", "ExtraCityEdit", "0.2.0")]
+[BepInPlugin("truedartt.extracityedit", "ExtraCityEdit", "0.2.1")]
 [BepInDependency(SOD.Common.Plugin.PLUGIN_GUID)]
 public class ExtraCityEdit : PluginController<ExtraCityEdit,Configs>
 {
@@ -147,6 +147,7 @@ public class ExtraCityEdit : PluginController<ExtraCityEdit,Configs>
         private static TMPro.TMP_Dropdown LandValueDropdown;
         private static TMPro.TMP_Dropdown EchelonFloorDropdown;
         private static TMPro.TMP_Dropdown DesignDropdown;
+        private static TMPro.TMP_Dropdown GrubinessDropdown;
         private static List<Color> ColorSelection = new List<Color>
         {
         new Color(0.0f, 0.0f, 0.0f, 1.0f),               // rgba(0,0,0,255)
@@ -272,6 +273,7 @@ public class ExtraCityEdit : PluginController<ExtraCityEdit,Configs>
         public static dynamic EchelonDelegate => EchelonFloorDropdown;
         public static dynamic ColorPickerDelegate => ColorPicker;
         public static dynamic DesignDelegate => DesignDropdown;
+        public static dynamic GrubinessDelegate => GrubinessDropdown;
         public static void Postfix()
         {
             // Loading Sprites
@@ -367,7 +369,7 @@ public class ExtraCityEdit : PluginController<ExtraCityEdit,Configs>
             }
 
             partSelectionDropdown.ClearOptions();
-            partSelectionDropdown.AddOptions(options: new List<string> { "Select Part", "Walls", "Floors", "Ceilings", "Miscellaneous" }.ToListIl2Cpp());
+            partSelectionDropdown.AddOptions(options: new List<string> { "Select Part", "Walls", "Floors", "Ceilings", "Miscellaneous", "Miscellaneous2" }.ToListIl2Cpp());
             partSelectionDropdown.value = -1;
             ResetSelection = partSelectionDropdown;
 
@@ -650,6 +652,16 @@ public class ExtraCityEdit : PluginController<ExtraCityEdit,Configs>
                             ColorBG4.color = swatchColor.color;
                             selectedTile.colourScheme = injectedColor4;
                             break;
+                        case (1, 5):
+                            var injectedColor5 = UnityEngine.Object.Instantiate(selectedTile.colourScheme);
+                            injectedColor5.neutral = swatchColor.color;
+                            ColorBG.color = swatchColor.color;
+                            selectedTile.colourScheme = injectedColor5;
+                            break;
+                        case (2, 5):
+                            selectedTile.wood = swatchColor.color;
+                            ColorBG2.color = swatchColor.color;
+                            break;
                         default:
                             ExtraCityEdit.Log.LogError("Something not selected");
                             break;
@@ -687,6 +699,7 @@ public class ExtraCityEdit : PluginController<ExtraCityEdit,Configs>
             LandValueSelector.transform.Find("LabelText").GetComponent<TMPro.TextMeshProUGUI>().text = "Land Value";
             LandValueDropdown.ClearOptions();
             LandValueDropdown.AddOptions(new List<string> {"Very Low","Low","Medium","High","Very High"}.ToListIl2Cpp());
+            LandValueDropdown.onValueChanged.RemoveAllListeners();
             LandValueDropdown.onValueChanged.AddListener((Action<int>)(value => 
             {
                 var selectedTile = mainController.currentlySelectedTile;
@@ -730,10 +743,12 @@ public class ExtraCityEdit : PluginController<ExtraCityEdit,Configs>
                 "19th Floor",
                 "Disable"
             }.ToListIl2Cpp());
+            EchelonFloorDropdown.onValueChanged.RemoveAllListeners();
             EchelonFloorDropdown.onValueChanged.AddListener((Action<int>)(value => 
             {
                 var selectedTile = mainController.currentlySelectedTile.building;
                 var injectedPreset = UnityEngine.Object.Instantiate(selectedTile.preset);
+                injectedPreset.buildingFeaturesEchelonFloors = true;
                 injectedPreset.echelonFloorStart = value;
                 selectedTile.preset = injectedPreset;
             }));
@@ -753,6 +768,7 @@ public class ExtraCityEdit : PluginController<ExtraCityEdit,Configs>
                 "60s 70s",
                 "Mid Century"
             }.ToListIl2Cpp());
+            DesignDropdown.onValueChanged.RemoveAllListeners();
             DesignDropdown.onValueChanged.AddListener((Action<int>)(value => 
             {
                 var selectedTile = mainController.currentlySelectedTile.building;
@@ -762,6 +778,31 @@ public class ExtraCityEdit : PluginController<ExtraCityEdit,Configs>
             
             }));
 
+            var GrubinessSelector = GameObject.Instantiate(matSelectionTemplate, newMenu.transform.Find("ButtonComponents"));
+            GrubinessSelector.SetSiblingIndex(6);
+            GrubinessSelector.name = "GrubinessDropdown";
+            GrubinessSelector.transform.Find("LabelText").GetComponent<TMPro.TextMeshProUGUI>().text = "Cleanliness";
+            GrubinessDropdown = GrubinessSelector.Find("Dropdown").GetComponent<TMPro.TMP_Dropdown>();
+            GrubinessDropdown.ClearOptions();
+            GrubinessDropdown.AddOptions(new List<string>
+            {
+                "Clean",
+                "Mostly Clean",
+                "Dirty",
+                "Very Dirty",
+                "Janitor is on vacation"
+            }.ToListIl2Cpp());
+            GrubinessDropdown.onValueChanged.RemoveAllListeners();
+            GrubinessDropdown.onValueChanged.AddListener((Action<int>)(value =>
+            {
+                var selectedTile = mainController.currentlySelectedTile.building;
+                selectedTile.ceilingMatKey.grubiness = (float)value / 4;
+                selectedTile.floorMatKey.grubiness = (float)value / 4;
+                selectedTile.defaultWallKey.grubiness = (float)value / 4;
+
+
+
+            }));
 
 
 
@@ -1044,6 +1085,33 @@ public class ExtraCityEdit : PluginController<ExtraCityEdit,Configs>
                     ColorButton3.GetComponent<ButtonController>().SetInteractable(true);
                     ColorButton4.GetComponent<ButtonController>().SetInteractable(true);
                 }
+                else if (value == 5)
+                {
+                    var selectedTile = mainController.currentlySelectedTile.building;
+                    partPicked = 5;
+                    matSelectionDropdown.interactable = false;
+                    ColorBG3.color = new Color(1, 1, 1, 1);
+                    ColorBG3.sprite = disabledCross;
+                    ColorBG3.overrideSprite = disabledCross;
+                    ColorBG3.pixelsPerUnitMultiplier = 10f;
+                    ColorButton3.GetComponent<ButtonController>().SetInteractable(false);
+                    ColorBG4.color = new Color(1, 1, 1, 1);
+                    ColorBG4.sprite = disabledCross;
+                    ColorBG4.overrideSprite = disabledCross;
+                    ColorBG4.pixelsPerUnitMultiplier = 10f;
+                    ColorButton4.GetComponent<ButtonController>().SetInteractable(false);
+                    ColorBG.sprite = newTexture;
+                    ColorBG.overrideSprite = newTexture;
+                    ColorBG.pixelsPerUnitMultiplier = 9f;
+                    ColorBG.color = selectedTile.colourScheme.neutral;
+                    ColorButton.GetComponent<ButtonController>().SetInteractable(true);
+                    ColorBG2.sprite = newTexture;
+                    ColorBG2.overrideSprite = newTexture;
+                    ColorBG2.pixelsPerUnitMultiplier = 9f;
+                    ColorBG2.color = selectedTile.wood;
+                    ColorButton2.GetComponent<ButtonController>().SetInteractable(true);
+
+                }
             }));
 
 
@@ -1131,6 +1199,7 @@ public class ExtraCityEdit : PluginController<ExtraCityEdit,Configs>
                 header2.Find("PanelTitle").GetComponent<TMPro.TextMeshProUGUI>().text = "Blending";
                 colorPartPicked = 1;
                 if (partPicked == 4) header2.Find("PanelTitle").GetComponent<TMPro.TextMeshProUGUI>().text = "Primary One";
+                if (partPicked == 5) header2.Find("PanelTitle").GetComponent<TMPro.TextMeshProUGUI>().text = "Neutral";
             }));
             ColorButton2.GetComponent<UnityEngine.UI.Button>().onClick.AddListener((Action)(() =>
             {
@@ -1139,6 +1208,7 @@ public class ExtraCityEdit : PluginController<ExtraCityEdit,Configs>
                 header2.Find("PanelTitle").GetComponent<TMPro.TextMeshProUGUI>().text = "Primary Color";
                 colorPartPicked = 2;
                 if (partPicked == 4) header2.Find("PanelTitle").GetComponent<TMPro.TextMeshProUGUI>().text = "Primary Two";
+                if (partPicked == 5) header2.Find("PanelTitle").GetComponent<TMPro.TextMeshProUGUI>().text = "Wood";
             }));
             ColorButton3.GetComponent<UnityEngine.UI.Button>().onClick.AddListener((Action)(() =>
             {
@@ -1159,7 +1229,7 @@ public class ExtraCityEdit : PluginController<ExtraCityEdit,Configs>
 
 
 
-            // Getting rid of redundecies scaling the menu
+            // Getting rid of redundecies, scaling the menu
 
 
 
@@ -1177,7 +1247,7 @@ public class ExtraCityEdit : PluginController<ExtraCityEdit,Configs>
             newMenu.transform.Find("ButtonComponents/Phase/Finalize").gameObject.SetActive(false);
             newMenu.transform.Find("ButtonComponents/Phase/Back").gameObject.SetActive(false);
 
-            newMenu.transform.GetComponent<UnityEngine.RectTransform>().sizeDelta = new Vector2(668, 642);
+            newMenu.transform.GetComponent<UnityEngine.RectTransform>().sizeDelta = new Vector2(668, 704);
 
 
 
@@ -1195,6 +1265,7 @@ public class ExtraCityEdit : PluginController<ExtraCityEdit,Configs>
             var landValueSelection = GameObject.Find("PrototypeBuilderCanvas/AdvancedSettings/ButtonComponents/LandValueDropdown/Dropdown/").GetComponent<TMPro.TMP_Dropdown>();
             var echelonFloorSelection = GameObject.Find("PrototypeBuilderCanvas/AdvancedSettings/ButtonComponents/EchelonFloorDropdown/Dropdown/").GetComponent<TMPro.TMP_Dropdown>();
             var designSelection = GameObject.Find("PrototypeBuilderCanvas/AdvancedSettings/ButtonComponents/DesignDropdown/Dropdown/").GetComponent<TMPro.TMP_Dropdown>();
+            var grubinessSelection = GameObject.Find("PrototypeBuilderCanvas/AdvancedSettings/ButtonComponents/GrubinessDropdown/Dropdown/").GetComponent<TMPro.TMP_Dropdown>();
             GammaCore.ColorPickerDelegate.gameObject.SetActive(false);
             if (GammaCore.advancedSettings == null)
             {
@@ -1213,6 +1284,7 @@ public class ExtraCityEdit : PluginController<ExtraCityEdit,Configs>
                 landValueSelection.interactable = true;
                 echelonFloorSelection.interactable = true;
                 designSelection.interactable = true;
+                grubinessSelection.interactable = true;
                 GammaCore.ResetDelegate.value = -1;
                 switch (selectedTile.landValue)
                 {
@@ -1232,8 +1304,15 @@ public class ExtraCityEdit : PluginController<ExtraCityEdit,Configs>
                     case "80sModern": GammaCore.DesignDelegate.value = 4; break;
                     case "60s70s": GammaCore.DesignDelegate.value = 5; break;
                     case "MidCentury": GammaCore.DesignDelegate.value = 6; break;
-
-
+                }
+                //GammaCore.GrubinessDelegate.value = (int)selectedTile.building.floorMatKey.grubiness * 4;
+                switch(selectedTile.building.floorMatKey.grubiness)
+                {
+                    case 0f: GammaCore.GrubinessDelegate.value = 0; break;
+                    case 0.25f: GammaCore.GrubinessDelegate.value = 1; break;
+                    case 0.5f: GammaCore.GrubinessDelegate.value = 2; break;
+                    case 0.75f: GammaCore.GrubinessDelegate.value = 3; break;
+                    case 1f: GammaCore.GrubinessDelegate.value = 4; break;
                 }
                 
             }
@@ -1244,6 +1323,7 @@ public class ExtraCityEdit : PluginController<ExtraCityEdit,Configs>
                 landValueSelection.interactable = false;
                 echelonFloorSelection.interactable = false;
                 designSelection.interactable = false;
+                grubinessSelection.interactable = false;
                 GammaCore.ResetDelegate.value = -1;
             }
         }
